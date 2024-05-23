@@ -1,0 +1,47 @@
+
+nav{
+  display: flex;
+  justify-content: space-between; 
+}
+
+#head2{
+  display: flex;
+  gap: 75px;
+  margin-right: 20px;
+}
+#navigation{
+  height: 90px;
+  align-items: center;
+  
+  box-shadow: 2px 30px 30px gray;
+}
+.Lin{
+  color: inherit;
+  text-decoration: none;
+}
+.jobCard{
+border: 2px solid;
+padding: 10px;
+}
+.jobCard:hover{
+  box-shadow: 2px 3px 2px gray;
+}
+.searchFilter{
+  display: flex;
+  justify-content: space-between;
+}
+.AddNewButton{
+  position: fixed;
+  right: 20px;
+  top:110px;
+}
+.AddNewDialog{
+  width: auto;
+  height:auto;
+  
+}
+.Apply{
+  position: relative;
+  left: 94%;
+  bottom:40px;
+}
