@@ -12,7 +12,8 @@ const jobSchema = new mongoose.Schema(
     location: {
       type: { type: String, default: "Point" },
       coordinates: { type: [Number], default: [0, 0] }
-    }
+    },
+    applicants:[{type:mongoose.Types.ObjectId,ref:'User'}]
   },
   {
     timestamps: true

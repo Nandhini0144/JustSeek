@@ -9,8 +9,7 @@ export const AuthProvider = ({ children }) => {
   const [authenticated, setAuthenticated] = useState(false);
   const [location,setLocation]=useState(null);
   const [gLocation,setGLocation]=useState(null);
-  useEffect(() => {
-    if (navigator.geolocation) {
+  useEffect(() => {     
         navigator.geolocation.getCurrentPosition(
             (position) => {
                 setGLocation({
@@ -22,12 +21,8 @@ export const AuthProvider = ({ children }) => {
             },
             (error) => {
                 console.error('Error getting location:', error);
-        alert('Enable allow location to view distance details')
-            }
-        );
-    } else {
-        alert('Enable allow location access to view distance details')
-    }
+                alert('Enable allow location to view distance details')
+            })
 }, []);
   const login = (Id) => {
     setUserId(Id);

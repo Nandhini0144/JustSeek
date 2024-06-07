@@ -8,6 +8,9 @@ import Login from './components/Login'
 import Register from './components/Register'
 import Add from './components/Add';
 import {AuthProvider} from './components/AuthContext'
+import PostedJobs from './components/PostedJobs';
+import AppliedJobs from './components/AppliedJobs';
+import Profile from './components/Profile';
 // const socket = io("http://172.16.132.224:5000");
 const url="http://localhost:5000";
 // export const SocketContext = React.createContext();
@@ -38,6 +41,18 @@ const router=createBrowserRouter([{
   {
     path:'/register',
     element:<Register/>
+  },
+  {
+    path:'/postedJobs',
+    element:<PostedJobs/>
+  },
+  {
+    path:'/appliedJobs',
+    element:<AppliedJobs/>
+  },
+  {
+    path:'/profile',
+    element:<Profile/>
   }
 ]
 }])

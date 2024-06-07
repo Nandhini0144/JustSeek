@@ -5,5 +5,9 @@ const isAuth=require('../config/isAuth');
 
 router.post('/',isAuth,jobController.addJob);
 router.get('/alljobs',jobController.jobs);
-router.get('/sortByDistance',isAuth,jobController.sortByDistance)
+router.get('/sortByDistance/:location',jobController.sortByDistance)
+router.get('/sortByGeoLocation/:latitude/:longitude',jobController.sortByGeoLocation)
+router.get('/applyForJob/:jobId',isAuth,jobController.applyForJob)
+router.get('/displayApplicants/:jobId',isAuth,jobController.getApplicants)
+router.delete('/deleteJob/:jobId',jobController.deleteJob);
 module.exports=router;

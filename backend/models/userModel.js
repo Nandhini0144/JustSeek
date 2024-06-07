@@ -8,6 +8,7 @@ const userSchema = mongoose.Schema(
     verified: { type: Boolean, default: false },
     propic: { type: String, default: "https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg" },
     postedJobs: [{ type: mongoose.Types.ObjectId, ref: 'Job' }],
+    appliedJobs:[{type:mongoose.Types.ObjectId,ref:'Job'}],
     Services: [{ type: mongoose.Types.ObjectId, ref: 'Service' }],
     loc:{type:String,required:true},
     location: {

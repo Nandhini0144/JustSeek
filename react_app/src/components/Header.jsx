@@ -14,9 +14,9 @@ const Header=()=>{
             </span>
             <span>
                 <Link to="/login" className="Lin">Login</Link>
-            </span>
+            </span> 
             <span>
-                <Link to="/register" className='Lin'>Register</Link>
+                <Link to="/profile" className="Lin">Profile</Link>
             </span>
             </div>
         </nav>

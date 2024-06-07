@@ -75,7 +75,6 @@ const registerUser = asyncHandler(async (req, res) => {
         res.status(400);
         throw new Error("User already exists");
     }
-
     try {
         const salt = await bcrypt.genSalt(10); 
         hashedPassword = await bcrypt.hash(password, salt);
@@ -159,27 +158,59 @@ const authUser=asyncHandler(async(req,res)=>{
         res.status(404).send({msg:err});
     }
 })
-const profileDetails=async(req,res)=>{
-   const user=await User.findById(req.user.id);
-   if(user)
-   {
-        res.json(user);
-   }
-   else{
-    res.status(404).send({ message: 'User not found' });
-   }
+const modifyProfile=asyncHandler(async(req,res)=>{
+    const user = await User.findById(req.user._id);
+    if (user) {
+      user.name = req.body.name || user.name;
+      if (req.body.password) {
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(req.body.password, salt.toString());
+        user.password = hashedPassword;
+    }
+      const updatedUser = await user.save();
+      res.send({  
+        token: generateToken(updatedUser),
+      });
+    } else {
+      res.status(404).send({ message: 'User not found' });
+    }
+})
+const profile=async(req,res)=>{
+    const user=await User.findById(req.user.id);
+    if(user)
+    {
+         res.json(user);
+    }
+    else{
+     res.status(404).send({ message: 'User not found' });
+    }
 }
-
 const postedJobs=asyncHandler(async(req,res)=>{
     const {user}=req;
      try{
         const fetchedUser=await User.findById(user.id);
-        await fetchedUser.populate('postedJobs');
+        await fetchedUser.populate({
+            path: 'postedJobs',
+            populate: {
+              path: 'applicants',
+              model: 'User'
+            }
+          });
         res.json(fetchedUser.postedJobs);
      }
      catch(error){
         res.status(500).json({errors:[{msg:'Server error'}]});
      }
 })
-
-module.exports={registerUser,authUser,profileDetails,postedJobs,emailVerification,emailVerificationHandler}
+const appliedJobs=async(req,res)=>{
+    try{
+      const user=req.user._id;
+      const userData=await User.findById(user);
+      await userData.populate('appliedJobs')
+      res.status(200).json({appliedJobs:userData.appliedJobs})
+    }
+    catch(err){
+      res.status(500).json({err:err}) 
+    }
+  }
+module.exports={registerUser,authUser,modifyProfile,postedJobs,emailVerification,emailVerificationHandler,profile,appliedJobs}

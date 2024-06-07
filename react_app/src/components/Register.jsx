@@ -3,7 +3,7 @@
 import React, { useState,useContext } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-// import './Register.css'
+import './Register.css'
 import { useAuth } from './AuthContext';
 import {DomainContext } from '../App';
 
@@ -65,7 +65,7 @@ const Registration = () => {
         </div>
         <div>
           <label>Location:</label>
-          <input type="text" value={loc} onChange={(e)=> setLocation(e.target.value)} required />
+          <input type="text" value={loc} placeholder='optional' onChange={(e)=> setLocation(e.target.value)}  />
         </div>
         <button type="submit">Register</button>
       </form>
