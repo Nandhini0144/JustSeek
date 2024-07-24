@@ -1,9 +1,53 @@
-import React from 'react'
+import React, { useState, useEffect,useContext } from 'react';
+import axios from 'axios';
+import {DomainContext } from '../App';
+import AppliedJobCard from './AppliedJobCard';
 
 const AppliedJobs = () => {
+  const [jobs, setJobs] = useState([]);
+  const [searchText, setSearchText] = useState('');
+  const [List,setList]=useState([])
+  const url=useContext(DomainContext);
+  useEffect(() => {
+    fetchData();
+  }, [jobs]);
+
+  const fetchData = async () => {
+    try {
+      const result = await axios.get(`${url}/api/user/appliedJobs`);
+      if (!result) {
+        throw new Error('Failed to fetch products');
+      }
+      const json=result.data;
+      setJobs(json);
+      setList(json);
+    } catch (error) {
+      console.error('Error fetching products:', error);
+    }
+  }
+  const updateSearchText = (e) => {
+    const val = e.target.value;
+    setSearchText(val);
+    filterBySearchJob(val);
+  }
+
+  const filterBySearchJob = (val) => {
+    const filteredData = jobs.filter((p) => {
+      return p.jobName.toLowerCase().includes(val.toLowerCase());
+    })
+    setList(filteredData);
+  }
+
   return (
-    <div>AppliedJobs</div>
-  )
+    <div className='postedJobs'>
+      <input value={searchText} onChange={updateSearchText} placeholder="Search job..." />
+      <div className='job-container'>
+        {List.map((ele) => (
+          <AppliedJobCard key={ele._id} job={ele} />
+        ))}
+      </div>
+    </div>
+  );
 }
 
-export default AppliedJobs
+export default AppliedJobs;

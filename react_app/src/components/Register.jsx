@@ -63,10 +63,6 @@ const Registration = () => {
           <label>Confirm Password:</label>
           <input type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} required />
         </div>
-        <div>
-          <label>Location:</label>
-          <input type="text" value={loc} placeholder='optional' onChange={(e)=> setLocation(e.target.value)}  />
-        </div>
         <button type="submit">Register</button>
       </form>
     </div>

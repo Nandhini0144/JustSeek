@@ -52,9 +52,12 @@ const JobCard = (props) => {
       gLocation &&
       <div>{parseFloat(distance(gLocation.coordinates.latitude,gLocation.coordinates.longitude,job.location.coordinates[1],job.location.coordinates[0]).toFixed(2))}Km</div>
 }
-{console.log(job.provider,userId)}
+{/* {console.log(job.provider,userId)} */}
+{console.log(job)}
+{console.log(job.applicants)}
 {   
-(userId && (job.applicants.includes(String(userId)) || (job.provider._id==userId)) ) ?
+
+(userId && ((job.applicants && job.applicants.includes(String(userId))) || (job.provider._id==userId)) ) ?
   <div>
   <button onClick={jobApply} disabled='true'>Apply</button>
      { job.provider._id!=userId && <div>You have applied for this job</div>}

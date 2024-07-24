@@ -1,0 +1,75 @@
+/* JobContainer.css */
+
+.jobContainer {
+    padding: 2rem;
+  }
+  
+  .button-group,
+  .input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  @media (min-width: 768px) {
+    .button-group,
+    .input-group {
+      flex-direction: row;
+    }
+  }
+  
+  .custom-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+  }
+  
+  .custom-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .custom-input {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+  }
+  
+  @media (min-width: 768px) {
+    .custom-input {
+      width: auto;
+      flex: 1;
+    }
+  }
+  
+  .AddNewButton {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+  }
+  
+  .add-button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+  }
+  
+  .add-button:hover {
+    background-color: #0056b3;
+  }
+
+

@@ -95,7 +95,7 @@ const JobContainer = () => {
     navigate('/add')
   }
   return (
-    <>
+    <div className='jobContainer'>
     <span>
       <button onClick={changeByJobType}>JobType</button>
     </span>
@@ -110,7 +110,7 @@ const JobContainer = () => {
       <input value={searchLocation} placeholder='Enter location to find Distance' onChange={updateSearch}/>
       <button onClick={sortByManualDistance}>submit</button>
     <div className='AddNewButton'>
-    <button onClick={addJob}>AddNew</button> 
+    <button onClick={addJob}>+</button> 
     </div>
     {console.log(List)}
     <div> 
@@ -120,8 +120,10 @@ const JobContainer = () => {
         })
       }
     </div>
-    </>
+    </div>
   )
 }
 
 export default JobContainer
+
+

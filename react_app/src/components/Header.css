@@ -1,0 +1,27 @@
+/* Header.css */
+.fixed-header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background: #3c84f0;
+    border-bottom: 1px solid #ccc; /* Optional: add a border to distinguish the header from the content */
+    padding: 10px 0; /* Adjust padding as needed */
+  }
+  
+  #navigation div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .Lin {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #000;
+  }
+  
+  .Lin:hover {
+    text-decoration: underline;
+  }
+  

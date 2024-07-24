@@ -1,13 +1,13 @@
 import React, { useState ,useContext} from 'react';
 import axios from 'axios';
-// import './Add.css';
+import './Add.css';
 import { useAuth } from './AuthContext';
 import { useNavigate } from 'react-router-dom';
 import {DomainContext } from '../App';
 
 
 const Add= () => {
-    const { authenticated } = useAuth(); 
+    const { authenticated } = useAuth();    
     const [jobName, setJobName] = useState('');
     const [description, setDescription] = useState('');
     const [avgSal, setAvgSal] = useState(0);

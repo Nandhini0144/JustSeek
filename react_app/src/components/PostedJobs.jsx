@@ -10,7 +10,7 @@ const PostedJobs = () => {
   const url=useContext(DomainContext);
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [jobs]);
 
   const fetchData = async () => {
     try {
@@ -39,14 +39,14 @@ const PostedJobs = () => {
   }
 
   return (
-    <>
+    <div className='postedJobs'>
       <input value={searchText} onChange={updateSearchText} placeholder="Search job..." />
       <div className='job-container'>
         {List.map((ele) => (
           <PostedJobCard key={ele._id} job={ele} />
         ))}
       </div>
-    </>
+    </div>
   );
 }
 

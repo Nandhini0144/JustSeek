@@ -1,0 +1,106 @@
+/* Add.css */
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .form-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-header {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .form-input,
+  .form-textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .form-textarea {
+    resize: vertical;
+    min-height: 100px; 
+  }
+  
+  .form-btn {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    font-size: 18px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .form-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .form-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  .form-error,
+  .form-success {
+    margin-top: 10px;
+    padding: 10px;
+    text-align: center;
+    border-radius: 4px;
+  }
+  
+  .form-error {
+    background-color: #dc3545;
+    color: #fff;
+  }
+  
+  .form-success {
+    background-color: #28a745;
+    color: #fff;
+  }
+  
+  .login-message {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .profile-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    font-size: 18px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .profile-button:hover {
+    background-color: #0056b3;
+  }
+  
