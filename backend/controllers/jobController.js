@@ -136,6 +136,7 @@ const sortByGeoLocation=asyncHandler(async(req,res)=>{
                 provider:'$providerDetails',
                 avgSal:1,
                 location: 1,
+                applicants:1,
                 distance: {$round:[{$divide: ['$distance', 1000]},2] } // Convert distance to kilometers
               }
             }
@@ -188,6 +189,7 @@ const sortByDistance = asyncHandler(async (req, res) => {
             provider:'$providerDetails',
             timing:1,
             avgSal:1,
+            applicants:1,
             location: 1,
             distance: {$round:[{$divide: ['$distance', 1000]},2] } // Convert distance to kilometers
           }

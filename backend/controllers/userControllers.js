@@ -26,13 +26,14 @@ const emailVerificationHandler = async (req, res) => {
 }
 
 const emailVerification = async (req, email, name) => {
+    try{
     const transporter = nodemailer.createTransport({
         host: 'smtp.gmail.com',
         port: 465,
         secure: true,
         auth: {
-            user: 'nandhini.k2021csbs@sece.ac.in', // Update with your Gmail email
-            pass: 'nand@0144' // Update with your Gmail password
+            user: process.env.EMAIL, // Update with your Gmail email
+            pass: process.env.PASSWORD // Update with your Gmail password
         }
     });
 
@@ -46,7 +47,7 @@ const emailVerification = async (req, email, name) => {
     const tok = jwt.sign(payload, process.env.SECRET_KEY, { expiresIn: '10m' });
 
     const mailConfigurations = {
-        from: 'nandhini.k2021csbs@sece.ac.in', // Update with your Gmail email
+        from:process.env.EMAIL, // Update with your Gmail email
         to: email,
         subject: 'Email Verification',
         text: `Hi ${name}! You have recently visited our website and entered your email. Please follow the given link to verify your email: http://localhost:5000/api/user/verify/${tok}/${name}/${email} Thanks`
@@ -61,10 +62,15 @@ const emailVerification = async (req, email, name) => {
             console.log(info);
             console.log(tok);
         }
-    });
+    });}
+    catch(error)
+    {
+        console.log(error);
+    }
 }
 
 const registerUser = asyncHandler(async (req, res) => {
+    try {
     const { name, email, password,loc } = req.body;
     if (!name || !email || !password) {
         res.status(400);
@@ -75,7 +81,6 @@ const registerUser = asyncHandler(async (req, res) => {
         res.status(400);
         throw new Error("User already exists");
     }
-    try {
         const salt = await bcrypt.genSalt(10); 
         hashedPassword = await bcrypt.hash(password, salt);
         await emailVerification(req, email, name);
@@ -83,22 +88,12 @@ const registerUser = asyncHandler(async (req, res) => {
             intervalId = setInterval(async() => {
                 if(isVerified=='true')
                 {
-        const geocodedAddressResponse = await geocodeAddress(loc);
-        if (!geocodedAddressResponse || !geocodedAddressResponse.Results || !geocodedAddressResponse.Results.length) {
-            throw new Error('Geocoding failed or returned empty results.');
-        }
-        const geocodedAddress = geocodedAddressResponse.Results[0];
-        const { longitude, latitude } = geocodedAddress;
+        
                 const newUser = new User({
                     name: name,
                     email: email,
                     password: hashedPassword,
                     verified: true,
-                    loc:loc,
-                    location: {
-                        type: "Point",
-                        coordinates: [longitude, latitude]
-                    }
                 });
                 console.log("user data saved");
                 const user = await newUser.save();
@@ -159,6 +154,7 @@ const authUser=asyncHandler(async(req,res)=>{
     }
 })
 const modifyProfile=asyncHandler(async(req,res)=>{
+    try{
     const user = await User.findById(req.user._id);
     if (user) {
       user.name = req.body.name || user.name;
@@ -173,9 +169,14 @@ const modifyProfile=asyncHandler(async(req,res)=>{
       });
     } else {
       res.status(404).send({ message: 'User not found' });
+    }}
+    catch(error)
+    {
+        console.log(error);
     }
 })
 const profile=async(req,res)=>{
+    try{
     const user=await User.findById(req.user.id);
     if(user)
     {
@@ -183,6 +184,10 @@ const profile=async(req,res)=>{
     }
     else{
      res.status(404).send({ message: 'User not found' });
+    }}
+    catch(error)
+    {
+        console.log(error);
     }
 }
 const postedJobs=asyncHandler(async(req,res)=>{
@@ -207,7 +212,7 @@ const appliedJobs=async(req,res)=>{
       const user=req.user._id;
       const userData=await User.findById(user);
       await userData.populate('appliedJobs')
-      res.status(200).json({appliedJobs:userData.appliedJobs})
+      res.status(200).json(userData.appliedJobs)
     }
     catch(err){
       res.status(500).json({err:err}) 

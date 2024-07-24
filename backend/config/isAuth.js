@@ -1,9 +1,9 @@
 const jwt=require('jsonwebtoken');
 const User=require('../models/userModel')
 const isAuth = async(req, res, next) => {
+  try{
     const {authorization} = req.headers;
     let token='';
-    try{
     token= authorization.split(" ")[1];
     if (authorization) {
       // console.log(token);

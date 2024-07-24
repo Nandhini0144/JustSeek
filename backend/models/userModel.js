@@ -10,11 +10,6 @@ const userSchema = mongoose.Schema(
     postedJobs: [{ type: mongoose.Types.ObjectId, ref: 'Job' }],
     appliedJobs:[{type:mongoose.Types.ObjectId,ref:'Job'}],
     Services: [{ type: mongoose.Types.ObjectId, ref: 'Service' }],
-    loc:{type:String,required:true},
-    location: {
-      type: { type: String, default: "Point" },
-      coordinates: { type: [Number], default: [0, 0] }
-    }
   },
   {
     timestamps: true // for logging timestamp for create and update of records

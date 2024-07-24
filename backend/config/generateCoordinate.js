@@ -2,6 +2,7 @@ const axios = require('axios');
 
 // Define an async function to make the API request
 const geocodeAddress=async(gaddress)=> {
+    try {
     const options = {
         method: 'GET',
         url: 'https://address-from-to-latitude-longitude.p.rapidapi.com/geolocationapi',
@@ -13,8 +14,6 @@ const geocodeAddress=async(gaddress)=> {
             'X-RapidAPI-Host': 'address-from-to-latitude-longitude.p.rapidapi.com'
         }
     };
-
-    try {
         const response = await axios.request(options);
         return response.data;
     } catch (error) {
