@@ -6,7 +6,7 @@ const userRoutes=require('./routes/userRoutes');
 const {notFound,errorHandler}=require("./middleware/errormiddleware") 
 
 const app=express();
-mongoose.connect("mongodb+srv://nandhinikuppuraj:Nand%400144@cluster1.lwgfisv.mongodb.net/?retryWrites=true&w=majority&appName=Cluster1");
+mongoose.connect("mongodb+srv://nandhinikuppuraj:abc123@cluster1.lwgfisv.mongodb.net/?retryWrites=true&w=majority&appName=Cluster1");
 mongoose.connection.on('connected',()=>console.log('connected'));
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
